@@ -70,11 +70,13 @@ matrix:
             - libc6-dev-armel-cross
             - libc6-armel-cross
             - qemu-user
+            - qemu-system-common
+            - qemu-keymaps
+            - qemu-system-arm
       before_script:
-        - wget http://ports.ubuntu.com/pool/main/e/eglibc/libc6-armel_2.19-0ubuntu6_armhf.deb -O /tmp/libc6-armel_armhf.deb
-        - dpkg -x /tmp/libc6-armel_armhf.deb /tmp/libc6-armel_armhf
-        - export GCONV_PATH=/tmp/libc6-armel_armhf/usr/lib/arm-linux-gnueabi/gconv
-
+            - wget http://ports.ubuntu.com/pool/main/e/eglibc/libc6_2.19-0ubuntu6_powerpc.deb -O /tmp/libc6_powerpc.deb
+            - dpkg -x /tmp/libc6_powerpc.deb /tmp/libc6_powerpc
+            - export GCONV_PATH=/tmp/libc6_powerpc/usr/lib/powerpc-linux-gnu/gconv
 script:
   - ./autogen.sh
   - ./configure $CONFIGURE_FLAGS
